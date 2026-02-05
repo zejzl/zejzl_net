@@ -30,6 +30,8 @@ npm start
 
 Open [http://localhost:3002](http://localhost:3002) to see the site.
 
+**Note:** This project uses Tailwind CSS v3 (stable). The initial create-next-app installed Tailwind v4 beta which had CSS generation issues. This has been fixed.
+
 ## Project Structure
 
 ```
@@ -153,6 +155,20 @@ vercel --prod
 - Firefox: ✅ Full support
 - Safari: ✅ Full support
 - Mobile: ✅ Responsive
+
+## Troubleshooting
+
+### CSS Not Loading
+If styles aren't appearing:
+1. Ensure you're using Tailwind v3 (not v4 beta)
+2. Check `postcss.config.mjs` uses `tailwindcss` and `autoprefixer` plugins
+3. Hard refresh: `Ctrl + Shift + F5`
+4. Clear `.next` folder: `rm -rf .next` then restart dev server
+
+### Matrix Animation Not Showing
+- Canvas requires JavaScript enabled
+- Check browser console for errors
+- Verify `MatrixBackground.tsx` component is rendering
 
 ## License
 
