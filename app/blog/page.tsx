@@ -3,17 +3,31 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blog | zejzl.net',
-  description: 'Deep-dives into AI architecture, multi-agent systems, and production ML engineering.',
+  title: 'Technical Blog - AI Architecture & Multi-Agent Systems',
+  description: 'Deep-dives into AI architecture, multi-agent orchestration, testing strategies, and production ML engineering. Real insights from building at scale.',
+  keywords: [
+    'AI blog',
+    'multi-agent systems',
+    'AI architecture',
+    'production ML',
+    'AI testing',
+    'agent orchestration',
+    'technical writing'
+  ],
   openGraph: {
-    title: 'Blog | zejzl.net',
+    title: 'Technical Blog - AI Architecture & Multi-Agent Systems | zejzl.net',
     description: 'Deep-dives into AI architecture, multi-agent systems, and production ML engineering.',
     type: 'website',
+    url: 'https://zejzl-net.vercel.app/blog',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blog | zejzl.net',
+    title: 'Technical Blog | zejzl.net',
     description: 'Deep-dives into AI architecture, multi-agent systems, and production ML engineering.',
+    creator: '@zejzl',
+  },
+  alternates: {
+    canonical: 'https://zejzl-net.vercel.app/blog',
   },
 };
 

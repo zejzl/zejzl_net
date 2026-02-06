@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import TableOfContents from '@/components/TableOfContents';
+import { ArticleSchema, BreadcrumbSchema } from '@/components/StructuredData';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -52,8 +53,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const baseUrl = 'https://zejzl-net.vercel.app';
+  const postUrl = `${baseUrl}/blog/${slug}`;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
+    <>
+      <ArticleSchema
+        title={post.title}
+        description={post.excerpt || post.title}
+        datePublished={post.published || new Date().toISOString()}
+        dateModified={post.published || new Date().toISOString()}
+        author={post.author || 'Zejzl'}
+        url={postUrl}
+        image="https://pbs.twimg.com/profile_images/1771247361030811648/Bv6dnuwM_400x400.jpg"
+      />
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', url: baseUrl },
+          { name: 'Blog', url: `${baseUrl}/blog` },
+          { name: post.title, url: postUrl },
+        ]}
+      />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
       {/* Header */}
       <header className="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -169,5 +190,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
       </footer>
     </div>
+    </>
   );
 }
