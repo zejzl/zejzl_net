@@ -1,10 +1,8 @@
-# Building a 9-Agent AI Pantheon: Architecture Deep-Dive
-
-**Author:** Neo & Zejzl  
-**Published:** January 29, 2026  
-**Reading Time:** 12 minutes  
-**Tags:** AI, Multi-Agent Systems, Architecture, Event-Driven Design, MCP Protocol
-
+---
+title: "Building a 9-Agent AI Pantheon: Architecture Deep-Dive"
+author: "Neo & Zejzl  "
+published: "January 29, 2026  "
+tags: ['AI', 'Multi-Agent Systems', 'Architecture', 'Event-Driven Design', 'MCP Protocol']
 ---
 
 ## The Problem with Single-Agent Systems

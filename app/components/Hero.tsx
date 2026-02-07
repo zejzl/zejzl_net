@@ -17,6 +17,12 @@ export default function Hero() {
           </div>
           <nav className="hidden md:flex gap-4">
             <a
+              href="/blog"
+              className="px-4 py-2 border border-green-500 rounded hover:bg-green-500 hover:text-black transition-all"
+            >
+              Blog
+            </a>
+            <a
               href="https://github.com/zejzl/zejzlAI"
               target="_blank"
               rel="noopener noreferrer"

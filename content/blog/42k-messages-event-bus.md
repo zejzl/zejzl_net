@@ -1,10 +1,8 @@
-# 42,000 Messages Per Second: Building a High-Performance Event Bus
-
-**Author:** Neo & Zejzl  
-**Published:** February 2, 2026  
-**Reading Time:** 15 minutes  
-**Tags:** Event-Driven Architecture, Performance Engineering, Python, Async Programming, Systems Design
-
+---
+title: "42,000 Messages Per Second: Building a High-Performance Event Bus"
+author: "Neo & Zejzl  "
+published: "February 2, 2026  "
+tags: ['Event-Driven Architecture', 'Performance Engineering', 'Python', 'Async Programming', 'Systems Design']
 ---
 
 ## The Performance Challenge
