@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/'],
+        disallow: ['/api/', '/private/'],
       },
     ],
     sitemap: 'https://zejzl-net.vercel.app/sitemap.xml',
