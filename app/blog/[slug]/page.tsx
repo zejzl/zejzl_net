@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import TableOfContents from '@/components/TableOfContents';
 import { ArticleSchema, BreadcrumbSchema } from '@/components/StructuredData';
+import MatrixBackground from '@/app/components/MatrixBackground';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -74,18 +75,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           { name: post.title, url: postUrl },
         ]}
       />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
+      <div className="min-h-screen bg-black text-green-500 font-mono">
+      <MatrixBackground />
       {/* Header */}
-      <header className="border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-lg border-b-2 border-green-500">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="text-2xl font-bold text-green-500 hover:text-green-400 transition-colors">
             zejzl.net
           </Link>
           <nav className="flex gap-6">
-            <Link href="/" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+            <Link href="/" className="text-green-400 hover:text-green-300 transition-colors">
               Home
             </Link>
-            <Link href="/blog" className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+            <Link href="/blog" className="text-green-400 hover:text-green-300 transition-colors">
               Blog
             </Link>
           </nav>
@@ -93,24 +95,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </header>
 
       {/* Article */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 pt-32 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-12">
           {/* Main Content */}
           <article className="max-w-3xl">
             {/* Post Header */}
-            <header className="mb-12">
+            <header className="mb-12 bg-gray-900/50 border-2 border-green-500 rounded-lg p-8">
               <Link
                 href="/blog"
-                className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6"
+                className="inline-flex items-center text-green-400 hover:text-green-300 mb-6"
               >
                 ← Back to blog
               </Link>
 
-              <h1 className="text-5xl font-bold mb-6 text-slate-900 dark:text-white leading-tight">
+              <h1 className="text-5xl font-bold mb-6 text-green-500 leading-tight">
                 {post.title}
               </h1>
 
-              <div className="flex flex-wrap gap-4 text-slate-500 dark:text-slate-400 mb-6">
+              <div className="flex flex-wrap gap-4 text-green-700 mb-6">
                 {post.author && <span>By {post.author}</span>}
                 {post.published && (
                   <span>
@@ -129,7 +131,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium"
+                      className="px-3 py-1 bg-green-900/30 border border-green-500 text-green-400 rounded text-sm font-medium"
                     >
                       {tag}
                     </span>
@@ -140,32 +142,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {/* Post Content */}
             <div
-              className="prose prose-slate dark:prose-invert max-w-none
-                prose-headings:font-bold prose-headings:text-slate-900 dark:prose-headings:text-white
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-                prose-p:text-slate-600 dark:prose-p:text-slate-400 prose-p:leading-relaxed
-                prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-                prose-code:text-blue-600 dark:prose-code:text-blue-400 prose-code:bg-slate-100 dark:prose-code:bg-slate-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-                prose-pre:bg-slate-900 prose-pre:text-slate-100 prose-pre:border prose-pre:border-slate-700
-                prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 dark:prose-blockquote:bg-blue-900/10 prose-blockquote:py-2 prose-blockquote:px-4
-                prose-ul:text-slate-600 dark:prose-ul:text-slate-400
-                prose-ol:text-slate-600 dark:prose-ol:text-slate-400
-                prose-li:marker:text-blue-600 dark:prose-li:marker:text-blue-400
-                prose-strong:text-slate-900 dark:prose-strong:text-white
-                prose-hr:border-slate-200 dark:prose-hr:border-slate-800
-                prose-table:border-slate-200 dark:prose-table:border-slate-800
-                prose-th:bg-slate-100 dark:prose-th:bg-slate-800
-                prose-td:border-slate-200 dark:prose-td:border-slate-800
+              className="prose prose-invert max-w-none bg-gray-900/30 border border-green-500 rounded-lg p-8
+                prose-headings:font-bold prose-headings:text-green-500
+                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-green-700 prose-h2:pb-2
+                prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-green-400
+                prose-p:text-green-300 prose-p:leading-relaxed
+                prose-a:text-green-400 prose-a:no-underline hover:prose-a:underline hover:prose-a:text-green-300
+                prose-code:text-green-400 prose-code:bg-black/50 prose-code:border prose-code:border-green-700 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+                prose-pre:bg-black prose-pre:text-green-400 prose-pre:border prose-pre:border-green-700 prose-pre:shadow-lg prose-pre:shadow-green-500/20
+                prose-blockquote:border-l-4 prose-blockquote:border-green-500 prose-blockquote:bg-green-900/10 prose-blockquote:text-green-400 prose-blockquote:py-2 prose-blockquote:px-4
+                prose-ul:text-green-300
+                prose-ol:text-green-300
+                prose-li:marker:text-green-500
+                prose-strong:text-green-400 prose-strong:font-bold
+                prose-hr:border-green-700
+                prose-table:border-green-700
+                prose-th:bg-green-900/20 prose-th:text-green-400 prose-th:border-green-700
+                prose-td:border-green-700 prose-td:text-green-300
               "
               dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }}
             />
 
             {/* Post Footer */}
-            <footer className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+            <footer className="mt-16 pt-8 border-t border-green-700">
               <Link
                 href="/blog"
-                className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+                className="inline-flex items-center text-green-400 hover:text-green-300"
               >
                 ← Back to all posts
               </Link>
@@ -184,8 +186,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 py-8 text-center text-slate-600 dark:text-slate-400">
+      <footer className="relative z-10 border-t-2 border-green-500 bg-black/90">
+        <div className="max-w-7xl mx-auto px-4 py-8 text-center text-green-700">
           <p>© 2026 zejzl.net. Built with Next.js, TypeScript, and Tailwind CSS.</p>
         </div>
       </footer>

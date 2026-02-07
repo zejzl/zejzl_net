@@ -7,7 +7,6 @@ import remarkHtml from 'remark-html';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import readingTime from 'reading-time';
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
