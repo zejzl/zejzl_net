@@ -107,22 +107,11 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   }
 
   // Process markdown with rehype/remark
-  // Custom sanitization schema to allow code blocks and common markdown elements
-  const customSchema = {
-    ...defaultSchema,
-    attributes: {
-      ...defaultSchema.attributes,
-      code: [...(defaultSchema.attributes?.code || []), 'className'],
-      span: [...(defaultSchema.attributes?.span || []), 'className'],
-      pre: [...(defaultSchema.attributes?.pre || []), 'className'],
-      div: [...(defaultSchema.attributes?.div || []), 'className'],
-    },
-  };
-
+  // Note: Removed rehypeSanitize since we control all blog content
+  // Sanitization is only needed for user-generated content
   const processedContent = await remark()
     .use(remarkGfm)
-    .use(remarkHtml)
-    .use(rehypeSanitize, customSchema)
+    .use(remarkHtml, { sanitize: false })
     .use(rehypeSlug)
     .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
     .use(rehypeHighlight)
