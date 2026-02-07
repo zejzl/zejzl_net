@@ -47,8 +47,8 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
   };
 
   return (
-    <nav className="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
-      <h2 className="text-lg font-bold mb-4 text-slate-900 dark:text-white">
+    <nav className="bg-gray-900/50 border-2 border-green-500 rounded-lg p-6 shadow-lg shadow-green-500/20">
+      <h2 className="text-lg font-bold mb-4 text-green-500 border-b border-green-700 pb-2">
         Table of Contents
       </h2>
       <ul className="space-y-2">
@@ -60,10 +60,10 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
             <a
               href={`#${heading.id}`}
               onClick={(e) => handleClick(e, heading.id)}
-              className={`block text-sm transition-colors ${
+              className={`block text-sm transition-all cursor-pointer ${
                 activeId === heading.id
-                  ? 'text-blue-600 dark:text-blue-400 font-medium'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  ? 'text-green-400 font-bold border-l-2 border-green-400 pl-3 bg-green-900/20'
+                  : 'text-green-600 hover:text-green-300 hover:border-l-2 hover:border-green-600 hover:pl-3'
               }`}
             >
               {heading.text}
