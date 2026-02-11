@@ -7,7 +7,47 @@ import remarkHtml from 'remark-html';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import readingTime from 'reading-time';
+
+// Custom sanitization schema: allow GFM, code blocks, headings, links, images
+// but block script tags, event handlers, iframes
+const sanitizeSchema = {
+  ...defaultSchema,
+  tagNames: [
+    ...(defaultSchema.tagNames || []),
+    // Ensure code/syntax highlighting elements are allowed
+    'code', 'pre', 'span',
+    // GFM tables
+    'table', 'thead', 'tbody', 'tr', 'th', 'td',
+    // Common block/inline elements
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+    'p', 'a', 'img', 'ul', 'ol', 'li',
+    'blockquote', 'em', 'strong', 'del', 'br', 'hr',
+    'details', 'summary', 'sup', 'sub',
+  ],
+  attributes: {
+    ...defaultSchema.attributes,
+    // Allow class on code/span for syntax highlighting (hljs classes)
+    code: ['className'],
+    span: ['className'],
+    pre: ['className'],
+    a: ['href', 'title', 'target', 'rel'],
+    img: ['src', 'alt', 'title', 'width', 'height'],
+    th: ['align'],
+    td: ['align'],
+    // Allow id for heading anchors
+    h1: ['id'], h2: ['id'], h3: ['id'], h4: ['id'], h5: ['id'], h6: ['id'],
+  },
+  // Strip dangerous protocols
+  protocols: {
+    ...defaultSchema.protocols,
+    href: ['http', 'https', 'mailto'],
+    src: ['http', 'https', 'data'],
+  },
+  // Explicitly disallow dangerous tags (defense in depth)
+  strip: ['script', 'style', 'iframe', 'object', 'embed', 'form', 'input', 'textarea'],
+};
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 
@@ -105,15 +145,15 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     headings.push({ id, text, level });
   }
 
-  // Process markdown with rehype/remark
-  // Note: Removed rehypeSanitize since we control all blog content
-  // Sanitization is only needed for user-generated content
+  // Process markdown with rehype/remark pipeline
+  // Sanitize HTML output to prevent XSS while preserving code highlighting
   const processedContent = await remark()
     .use(remarkGfm)
     .use(remarkHtml, { sanitize: false })
+    .use(rehypeHighlight)
+    .use(rehypeSanitize, sanitizeSchema)
     .use(rehypeSlug)
     .use(rehypeAutolinkHeadings, { behavior: 'wrap' })
-    .use(rehypeHighlight)
     .process(content);
 
   const contentHtml = processedContent.toString();
