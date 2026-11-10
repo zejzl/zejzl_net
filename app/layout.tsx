@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://zejzl-net.vercel.app'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "zejzl.net - Production-Ready Multi-Agent AI Framework",
     template: "%s | zejzl.net"
@@ -31,10 +32,13 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://zejzl-net.vercel.app",
+    url: SITE_URL,
     title: "zejzl.net - Production-Ready Multi-Agent AI Framework",
     description: "9-Agent Pantheon system for complex AI tasks. Multi-provider support, async message bus, self-healing magic system.",
     siteName: "zejzl.net",

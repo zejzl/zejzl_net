@@ -2,6 +2,7 @@ import { getAllPosts, getAllTags } from '@/lib/blog';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import MatrixBackground from '@/app/components/MatrixBackground';
+import { siteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Technical Blog - AI Architecture & Multi-Agent Systems',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Technical Blog - AI Architecture & Multi-Agent Systems | zejzl.net',
     description: 'Deep-dives into AI architecture, multi-agent systems, and production ML engineering.',
     type: 'website',
-    url: 'https://zejzl-net.vercel.app/blog',
+    url: siteUrl('/blog'),
   },
   twitter: {
     card: 'summary_large_image',
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     creator: '@zejzl',
   },
   alternates: {
-    canonical: 'https://zejzl-net.vercel.app/blog',
+    canonical: siteUrl('/blog'),
   },
 };
 

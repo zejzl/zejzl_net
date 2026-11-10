@@ -1,4 +1,5 @@
 import React from 'react';
+import { SITE_URL } from '@/lib/site';
 
 interface OrganizationSchemaProps {
   name?: string;
@@ -10,7 +11,7 @@ interface OrganizationSchemaProps {
 
 export function OrganizationSchema({
   name = 'zejzl.net',
-  url = 'https://zejzl-net.vercel.app',
+  url = SITE_URL,
   logo = 'https://pbs.twimg.com/profile_images/1771247361030811648/Bv6dnuwM_400x400.jpg',
   description = 'Production-ready multi-agent AI framework. 9-Agent Pantheon system for complex AI orchestration.',
   sameAs = [
@@ -46,7 +47,7 @@ interface WebsiteSchemaProps {
 
 export function WebsiteSchema({
   name = 'zejzl.net',
-  url = 'https://zejzl-net.vercel.app',
+  url = SITE_URL,
   description = 'Production-ready multi-agent AI framework. 9-Agent Pantheon system for complex AI orchestration.',
   sameAs,
 }: WebsiteSchemaProps) {
