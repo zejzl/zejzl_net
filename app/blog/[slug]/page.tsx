@@ -5,6 +5,7 @@ import { Metadata } from 'next';
 import TableOfContents from '@/components/TableOfContents';
 import { ArticleSchema, BreadcrumbSchema } from '@/components/StructuredData';
 import MatrixBackground from '@/app/components/MatrixBackground';
+import { siteUrl } from '@/lib/site';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -27,13 +28,19 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
+  const url = siteUrl(`/blog/${slug}`);
+
   return {
     title: `${post.title} | zejzl.net Blog`,
     description: post.excerpt || `Read ${post.title} on zejzl.net`,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt || `Read ${post.title} on zejzl.net`,
       type: 'article',
+      url,
       publishedTime: post.published,
       authors: post.author ? [post.author] : undefined,
       tags: post.tags,
@@ -54,8 +61,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const baseUrl = 'https://zejzl-net.vercel.app';
-  const postUrl = `${baseUrl}/blog/${slug}`;
+  const postUrl = siteUrl(`/blog/${slug}`);
 
   return (
     <>
@@ -70,8 +76,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       />
       <BreadcrumbSchema
         items={[
-          { name: 'Home', url: baseUrl },
-          { name: 'Blog', url: `${baseUrl}/blog` },
+          { name: 'Home', url: siteUrl('/') },
+          { name: 'Blog', url: siteUrl('/blog') },
           { name: post.title, url: postUrl },
         ]}
       />
